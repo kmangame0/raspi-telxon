@@ -7,11 +7,18 @@ class Telxon:
 		frame = Frame(master)
 		frame.pack()
 
-		UPC_Label = (master, text="UPC")
 		UPC_Entry = Entry(master)
+		UPC_Entry.pack(side=RIGHT)
+
+		UPC_Label = Label(master, text="UPC")
+		UPC_Label.pack(side=LEFT)
 
 		self.searchButton = Button(frame, text="UPC Search", command=self.searchButton)
-		self.searchButton.pack(side=LEFT)
+		self.searchButton.pack()
 
-root = tk()
+	def searchButton(self):
+                print("Search button pressed")
+        
+root = Tk()
+t = Telxon(root)
 root.mainloop()
