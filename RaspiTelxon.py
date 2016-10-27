@@ -1,24 +1,28 @@
 from tkinter import *
-from requests import *
+import requests
+import json
 
-class Telxon:
-
-	def __init__(self, master):
-		frame = Frame(master)
-		frame.pack()
-
-		UPC_Entry = Entry(master)
-		UPC_Entry.pack(side=RIGHT)
-
-		UPC_Label = Label(master, text="UPC")
-		UPC_Label.pack(side=LEFT)
-
-		self.searchButton = Button(frame, text="UPC Search", command=self.searchButton)
-		self.searchButton.pack()
-
-	def searchButton(self):
-                print("Search button pressed")
-        
 root = Tk()
-t = Telxon(root)
+root.resizable(width=False, height=False)
+root.minsize(width=800, height=480)
+
+def search_UPC():
+	request = requests.get('https://api.upcitemdb.com/prod/trial/lookup?upc=611269546019')
+	
+	
+
+UPC_Label = Label(root, text="UPC")
+UPC_Entry = Entry(root)
+Search_Button = Button(root, text="Search", command=search_UPC)
+
+UPC_Label.grid(row=0)
+UPC_Entry.grid(row=0, column=1)
+Search_Button.grid(row=1, column=1)
+
+
+
+
+
+
+#t = Telxon(root)
 root.mainloop()
