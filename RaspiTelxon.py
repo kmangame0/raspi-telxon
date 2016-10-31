@@ -1,28 +1,76 @@
-from tkinter import *
-import requests
-import json
+import tkinter as tk
 
-root = Tk()
-root.resizable(width=False, height=False)
-root.minsize(width=800, height=480)
-
-def search_UPC():
-	request = requests.get('https://api.upcitemdb.com/prod/trial/lookup?upc=611269546019')
+class RaspiTelxon(tk.Tk):
 	
-	
+	def __init__(self, *args, **kwargs):
+		
+		tk.Tk.__init__(self, *args, **kwargs)
+		
+		container = tk.Frame(self)
 
-UPC_Label = Label(root, text="UPC")
-UPC_Entry = Entry(root)
-Search_Button = Button(root, text="Search", command=search_UPC)
+		container.pack(side="top", fill="both", expand = True)
 
-UPC_Label.grid(row=0)
-UPC_Entry.grid(row=0, column=1)
-Search_Button.grid(row=1, column=1)
+		container.grid_rowconfigure(0, weight=1)
+		container.grid_columnconfigure(0, weight=1)
+
+		self.minsize(width=800, height=480)
+
+		self.frames = {}
+
+		for F in (StartPage, SearchPage, ResultsPage):
+
+			frame = F(container, self)
+
+			self.frames[F] = frame
+
+			frame.grid(row=0, column=0, sticky="nsew")
+
+		self.show_frame(StartPage)
+
+	def show_frame(self, cont):
+		frame = self.frames[cont]
+		frame.tkraise()
+
+class StartPage(tk.Frame):
+
+	def __init__(self, parent, controller):
+
+		tk.Frame.__init__(self, parent)
+
+		label = tk.Label(self, text = "Start Page")
+		label.pack(pady=10, padx=10)
+
+		EnterAppButton = tk.Button(self, text="Start Using Raspi-Telxon!",
+																command=lambda: controller.show_frame(SearchPage))
+		EnterAppButton.pack()
+
+class SearchPage(tk.Frame):
+
+	def __init__(self, parent, controller):
+
+		tk.Frame.__init__(self, parent)
+
+		UPC_Label = tk.Label(self, text="UPC")
+		UPC_Label.pack()
+
+		UPC_Entry = tk.Entry(self)
+		UPC_Entry.pack()
+
+		Search_Button = tk.Button(self, text="Search", 
+															command=lambda: controller.show_frame(ResultsPage))
+		Search_Button.pack()
 
 
+class ResultsPage(tk.Frame):
 
+	def __init__(self, parent, controller):
 
+		tk.Frame.__init__(self, parent)
 
+		UPC_Label = tk.Label(self, text="Hello, World!")
+		UPC_Label.pack()
 
-#t = Telxon(root)
-root.mainloop()
+app = RaspiTelxon()
+app.mainloop()
+
+		
