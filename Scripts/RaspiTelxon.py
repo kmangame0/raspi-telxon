@@ -1,4 +1,5 @@
 import tkinter as tk
+import Controller as dbc
 
 class RaspiTelxon(tk.Tk):
 	
@@ -8,7 +9,7 @@ class RaspiTelxon(tk.Tk):
 		
 		container = tk.Frame(self)
 
-		container.pack(side="top", fill="both", expand = True)
+		container.pack(side="top", fill="both", expand=True)
 
 		container.grid_rowconfigure(0, weight=1)
 		container.grid_columnconfigure(0, weight=1)
@@ -53,13 +54,27 @@ class SearchPage(tk.Frame):
 		UPC_Label = tk.Label(self, text="UPC")
 		UPC_Label.pack()
 
-		UPC_Entry = tk.Entry(self)
-		UPC_Entry.pack()
+		self.UPC_Entry = tk.Entry(self)
+		self.UPC_Entry.pack()
 
-		Search_Button = tk.Button(self, text="Search", 
-															command=lambda: controller.show_frame(ResultsPage))
-		Search_Button.pack()
+		self.Search_Button = tk.Button(self, text="Search", 
+															command=self.Search_Button_Get)
+		self.Search_Button.pack()
+		#controller.show_frame(ResultsPage)
+		
+	def Search_Button_Get(self):
+		upc = ""
+		
+		if(self.UPC_Entry.get() != ""):
+			upc = self.UPC_Entry.get()
 
+		database = dbc.DB_Connector(self)
+
+		database.some_upc = upc
+
+		result = database.fetch_product()
+
+		print(result)
 
 class ResultsPage(tk.Frame):
 
