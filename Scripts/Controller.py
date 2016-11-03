@@ -4,18 +4,19 @@ class DB_Connector:
 
 	def __init__(self, *args, **kwargs):
 
+		self.dbStr = "/Users/kellenreason/Development/raspi-telxon/Databases/Product.db"
 		self.table_name = 'products'
 		self.id_column  = 'id'
 		self.column_2   = 'upc'
 		self.column_3   = 'name'
 		self.column_4   = 'image'
 		self.some_upc = ""
+		self.result = ""
 
 	
 	def fetch_product(self):
 
-		conn = sql.connect(
-			"/Users/kellenreason/Development/raspi-telxon/Databases/Product.db")
+		conn = sql.connect(self.dbStr)
 
 		c = conn.cursor()
 
@@ -23,6 +24,6 @@ class DB_Connector:
 	        format(tn=self.table_name, cn=self.column_2, 
 	        	upc=self.column_2, my_upc=self.some_upc))
 		
-		upc_exists = c.fetchone()
+		result = c.fetchone()
 
-		return upc_exists
+		return result
