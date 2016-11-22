@@ -4,7 +4,7 @@ class DB_Connector:
 
 	def __init__(self, *args, **kwargs):
 
-		self.dbStr = "/Users/kellenreason/Development/raspi-telxon/Databases/Product.db"
+		self.dbStr = "../Databases/Product.db"
 		self.table_name = 'products'
 		self.id_column  = 'id'
 		self.column_2   = 'upc'
