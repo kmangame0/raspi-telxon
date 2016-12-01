@@ -4,7 +4,7 @@ class DB_Connector:
 
 	def __init__(self):
 
-		self.dbStr = "/home/pi/dev/raspi-telxon/Databases/Products.db"
+		self.dbStr = "../Databases/Products.db"
 		self.table_name = 'products'
 		self.id_column  = 'id'
 		self.column_2   = 'upc'
