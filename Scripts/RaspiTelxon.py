@@ -16,6 +16,7 @@ class RaspiTelxon(tk.Tk):
 		
 		self.titleFont = font.Font(family='Helvetica', size=24)
 		self.itemFont = font.Font(family='Helvetica', size=18)
+		self.detailFont = font.Font(family='Helvetica', size=14)
 
 		# Self is this instance of Tk IE:- "root"
 		container = tk.Frame(self)
@@ -211,7 +212,7 @@ class ResultsPage(tk.Frame):
 		units_in_package_label = tk.Label(main, text="Units In Package:- " + unitsInPackage, font=controller.itemFont)
 		units_in_package_label.pack(pady=5, padx=5, anchor="nw")
 
-		ingredients_label = tk.Label(main, wraplength=350, text="Ingredients\n" + ingredients, font=controller.itemFont)
+		ingredients_label = tk.Label(main, wraplength=350, text="Ingredients\n" + ingredients, font=controller.detailFont)
 		ingredients_label.pack(pady=5, padx=5, anchor="n")
 
 
