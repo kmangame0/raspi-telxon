@@ -2,14 +2,17 @@ import sqlite3 as sql
 
 class DB_Connector:
 
-	def __init__(self, *args, **kwargs):
+	def __init__(self):
 
-		self.dbStr = "../Databases/Product.db"
+		self.dbStr = "../Databases/Products.db"
 		self.table_name = 'products'
 		self.id_column  = 'id'
 		self.column_2   = 'upc'
 		self.column_3   = 'name'
 		self.column_4   = 'image'
+		self.column_5   = 'uip'
+		self.column_6   = 'unitSize'
+		self.column_7   = 'ingredients'
 		self.some_upc = ""
 		self.result = ""
 
@@ -20,9 +23,9 @@ class DB_Connector:
 
 		c = conn.cursor()
 
-		c.execute("SELECT * FROM {tn} WHERE {upc}={my_upc}".\
-	        format(tn=self.table_name, cn=self.column_2, 
-	        	upc=self.column_2, my_upc=self.some_upc))
+		my_upc = self.some_upc
+
+		c.execute("SELECT * FROM products WHERE upc='%s'" % my_upc)
 		
 		result = c.fetchone()
 
