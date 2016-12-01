@@ -107,6 +107,7 @@ class SearchPage(tk.Frame):
 		UPC_Label.pack(pady=10, padx=10, anchor="center")
 
 		self.UPC_Entry = tk.Entry(self)
+		self.UPC_Entry.focus_set()
 		self.UPC_Entry.pack(pady=10, padx=10, anchor="center")
 
 		backButton = tk.Button(navbar, text="Back",
@@ -213,7 +214,7 @@ class ResultsPage(tk.Frame):
 		units_in_package_label.pack(pady=5, padx=5, anchor="nw")
 
 		ingredients_label = tk.Label(main, wraplength=350, text="Ingredients\n" + ingredients, font=controller.detailFont)
-		ingredients_label.pack(pady=5, padx=5, anchor="n")
+		ingredients_label.pack(pady=2, padx=2, anchor="n")
 
 
 	def new_search(self):
