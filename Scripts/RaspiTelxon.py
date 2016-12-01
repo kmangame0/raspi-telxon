@@ -205,13 +205,13 @@ class ResultsPage(tk.Frame):
 		name_label.pack(pady=10, padx=10, anchor="ne")
 
 		upc_label = tk.Label(main, text="UPC:- " + UPC, font=controller.itemFont)
-		upc_label.pack(pady=5, padx=5, anchor="nw")
+		upc_label.pack(pady=2, padx=2, anchor="nw")
 
 		unit_size_label = tk.Label(main, text="Unit Size:- " + unitSize, font=controller.itemFont)
-		unit_size_label.pack(pady=5, padx=5, anchor="nw")
+		unit_size_label.pack(pady=2, padx=2, anchor="nw")
 
 		units_in_package_label = tk.Label(main, text="Units In Package:- " + unitsInPackage, font=controller.itemFont)
-		units_in_package_label.pack(pady=5, padx=5, anchor="nw")
+		units_in_package_label.pack(pady=2, padx=2, anchor="nw")
 
 		ingredients_label = tk.Label(main, wraplength=350, text="Ingredients\n" + ingredients, font=controller.detailFont)
 		ingredients_label.pack(pady=2, padx=2, anchor="n")
